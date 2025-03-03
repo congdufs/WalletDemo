@@ -18,7 +18,7 @@ class SettingViewController: UIViewController {
         title = "Settings"
         reactNativeFactoryDelegate = ReactNativeDelegate()
         reactNativeFactory = RCTReactNativeFactory(delegate: reactNativeFactoryDelegate!)
-        view = reactNativeFactory!.rootViewFactory.view(withModuleName: "WalletDemo")
+        view = reactNativeFactory!.rootViewFactory.view(withModuleName: "ReactNativeModule")
     }
 }
 

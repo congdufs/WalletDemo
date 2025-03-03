@@ -8,8 +8,12 @@ import {
   Image,
   View,
 } from 'react-native';
+// import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import type { AppScreenProps } from './navigation';
 
-// 模拟数据
+
+// mock data
 const mockData = [
   {
     title: 'Account',
@@ -55,7 +59,10 @@ const mockData = [
   }
 ];
 
-function App() {
+interface AppProps {}
+
+function App({}: AppProps) {
+  const navigation = useNavigation<AppScreenProps['navigation']>();
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -66,7 +73,6 @@ function App() {
             <TouchableOpacity style={styles.header} onPress={() => alert(item.title)}>
               <Text style={styles.headerText}>{item.title}</Text>
             </TouchableOpacity>
-
             {item.items.map((content, index) => {
               const firstItem = index === 0;
               const lastItem = index === item.items.length - 1;
@@ -85,12 +91,30 @@ function App() {
                     onPress={() => {
                       switch (content.mainText) {
                         case 'Display Currency':
-                          // navigation.navigate('ManageTokens');
+                          // todoo
+                          navigation.navigate('CurrencySelection', { 
+                            currentCurrency: content.subText.replace('$', '') || 'USD'
+                          });
                           break;
                         default:
                           alert(content.mainText);
                       }
                     }}
+                    // 修改点击处理部分
+                    // const handleItemPress = (content: typeof mockData[number]['items'][number]) => {
+                    //   switch (content.mainText) {
+                    //     case 'Display Currency':
+                    //       navigation.navigate('CurrencySelection', { 
+                    //         currentCurrency: content.subText?.replace('$', '') || 'USD'
+                    //       });
+                    //       break;
+                    //     default:
+                    //       alert(content.mainText);
+                    //   }
+                    // };
+
+                    // // 在 renderItem 中使用：
+                    // onPress={() => handleItemPress(content)}
                   >
                     <Text style={styles.mainText}>{content.mainText}</Text>
                     {content.subText ? (
