@@ -19,7 +19,6 @@ class AssetViewController: BaseViewController {
         updateData()
     }
     
-    // MARK: - todoo
     private func setupUI() {
         view.backgroundColor = .white
         setupSettingsButton()
@@ -28,7 +27,6 @@ class AssetViewController: BaseViewController {
         setupRefreshControl()
     }
 
-    // todoo
     private func setupSettingsButton() {
         let settingsButton = UIBarButtonItem(
             image: UIImage(named: "setting")?.withRenderingMode(.alwaysOriginal),
@@ -68,8 +66,6 @@ class AssetViewController: BaseViewController {
         tableView.register(AssetHeaderTableViewCell.self, forCellReuseIdentifier: AssetHeaderTableViewCell.cellIdentifier)
         tableView.register(AssetEventTableViewCell.self, forCellReuseIdentifier: AssetEventTableViewCell.cellIdentifier)
         tableView.register(AssetCategoryTableViewCell.self, forCellReuseIdentifier: AssetCategoryTableViewCell.cellIdentifier)
-        // todoo
-//        tableView.backgroundColor = .systemPink
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
@@ -141,7 +137,6 @@ extension AssetViewController: UITableViewDataSource {
         return 4
     }
 
-    // todoo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         switch (indexPath.row) {
@@ -201,7 +196,6 @@ extension AssetViewController: UITableViewDataSource {
 }
 
 extension AssetViewController: UITableViewDelegate {
-    // todoo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row) {
         case 0:

@@ -11,7 +11,6 @@ class AssetCategoryTableViewCell: UITableViewCell {
     var onItemSelected: ((EventType) -> Void)?
     static let cellIdentifier = "AssetCategoryTableViewCell"
     lazy var titleCollectionView: UICollectionView = {
-        // todoo
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 40)
         layout.scrollDirection = .horizontal
@@ -23,7 +22,6 @@ class AssetCategoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     lazy var contentCollectionView: UICollectionView = {
-        // todoo
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: UIScreen.main.bounds.size.width - 40, height: 210)
@@ -38,8 +36,6 @@ class AssetCategoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
-    
-    // todoo
     private var items: [CategoryItem] = [CategoryItem(id: "Crypto", title: "Crypto", isSelected: true), CategoryItem(id: "Earn", title: "Earn",  isSelected: false), CategoryItem(id: "NFTs", title: "NFTs",  isSelected: false)]
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -66,16 +62,9 @@ class AssetCategoryTableViewCell: UITableViewCell {
             make.top.equalTo(titleCollectionView.snp.bottom).offset(40)
             make.height.equalTo(210)
         }
-        // todoo
         titleCollectionView.reloadData()
         contentCollectionView.reloadData()
     }
-
-//    private func handlePageChange() {
-//        let pageWidth = contentCollectionView.frame.width
-//        let currentPage = Int(contentCollectionView.contentOffset.x / pageWidth)
-//        print("当前页码: \(currentPage)")
-//    }
 }
 
 extension AssetCategoryTableViewCell: UICollectionViewDataSource {

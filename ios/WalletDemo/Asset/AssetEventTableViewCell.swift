@@ -10,7 +10,6 @@ import UIKit
 class AssetEventTableViewCell: UITableViewCell {
     static let cellIdentifier = "AssetEventTableViewCell"
     lazy var collectionView:UICollectionView = {
-        // todoo
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width:80, height: 80)
         layout.scrollDirection = .horizontal
@@ -21,7 +20,7 @@ class AssetEventTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         return collectionView
     }()
-    // todoo
+    
     private var items: [EventItem] = [EventItem(id: "Buy", imageName: "transaction", title: "Buy"), EventItem(id: "Send", imageName: "transaction", title: "Send"), EventItem(id: "Receive", imageName: "transaction", title: "Receive"), EventItem(id: "Earn", imageName: "transaction", title: "Earn")]
     var onItemSelected: ((EventItem) -> Void)?
     

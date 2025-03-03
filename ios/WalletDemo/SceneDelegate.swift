@@ -82,7 +82,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController.delegate = self
         tabBarController.viewControllers = [homeNav, transactionNav, assetNav]
-        tabBarController.selectedIndex = 2// todoo
+        tabBarController.selectedIndex = 2
         tabBarController.tabBar.tintColor = .gray
     }
 }

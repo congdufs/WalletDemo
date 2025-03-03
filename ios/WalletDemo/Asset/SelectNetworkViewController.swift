@@ -39,11 +39,9 @@ class SelectNetworkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-//        updateData()
     }
     
     private func setupUI() {
-        // todoo
         view.backgroundColor = .white
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { make in
@@ -67,7 +65,6 @@ class SelectNetworkViewController: UIViewController {
             make.height.equalTo(44)
         }
         confirmButton.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
-        // todoo uitableview
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
@@ -115,21 +112,11 @@ extension SelectNetworkViewController: UITableViewDataSource {
         return items.count
     }
 
-    // todoo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         switch (indexPath.section) {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: AddNetworkTableViewCell.cellIdentifier, for: indexPath)
-//            if let addingCell = addingCell as? AddNetworkTableViewCell {
-////                headCell.onNetworkButtonTapped = { [weak self] in
-////                    guard let self = self else { return }
-////                    let vc = SelectNetworkViewController()
-////                    vc.modalPresentationStyle = .pageSheet
-////                    self.present(vc, animated: true)
-////                }
-//            }
-//            cell = addingCell
         case 1:
             let selectingCell = tableView.dequeueReusableCell(withIdentifier: SelectNetworkTableViewCell.cellIdentifier, for: indexPath)
             if let selectingCell = selectingCell as? SelectNetworkTableViewCell, indexPath.row < items.count  {
@@ -148,7 +135,6 @@ extension SelectNetworkViewController: UITableViewDataSource {
 }
 
 extension SelectNetworkViewController: UITableViewDelegate {
-    // todoo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48.0
     }

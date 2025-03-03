@@ -11,10 +11,7 @@ class SelectNetworkTableViewCell: UITableViewCell {
     static let cellIdentifier = "SelectNetworkTableViewCell"
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        // todoo
         imageView.image = UIImage(named: "unselected")
-        //        imageView.layer.cornerRadius = 20
-        //        imageView.clipsToBounds = true
         return imageView
     }()
     private let titleLabel: UILabel = {

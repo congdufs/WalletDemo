@@ -29,7 +29,6 @@ class AssetCategoryContentCollectionViewCell: UICollectionViewCell {
     private let buyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Buy Crypto", for: .normal)
-        // todoo
         button.setImage(UIImage(named: "asset_normal"), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.contentHorizontalAlignment = .leading
@@ -38,7 +37,6 @@ class AssetCategoryContentCollectionViewCell: UICollectionViewCell {
     private let receiveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Receive Funds", for: .normal)
-        // todoo
         button.setImage(UIImage(named: "asset_normal"), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.contentHorizontalAlignment = .leading
@@ -47,7 +45,6 @@ class AssetCategoryContentCollectionViewCell: UICollectionViewCell {
     private let connectButton: UIButton = {
         let button = UIButton()
         button.setTitle("Connect Crypto.com Account", for: .normal)
-        // todoo
         button.setImage(UIImage(named: "asset_normal"), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.contentHorizontalAlignment = .leading

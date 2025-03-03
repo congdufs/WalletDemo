@@ -16,7 +16,6 @@ class AssetHeaderTableViewCell: UITableViewCell {
         label.textColor = .black
         label.textAlignment = .right
         label.numberOfLines = 1
-        // todoo
         label.text = "***"
         label.font = .boldSystemFont(ofSize: 15)
         label.adjustsFontSizeToFitWidth = true
@@ -34,22 +33,10 @@ class AssetHeaderTableViewCell: UITableViewCell {
         label.textColor = .green
         label.textAlignment = .center
         label.numberOfLines = 1
-        // todoo
         label.text = "*** . ***"
         label.font = .systemFont(ofSize: 12)
         return label
     }()
-//    private let moneyIncreaseRatioLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .gray
-//        label.textAlignment = .left
-//        label.numberOfLines = 1
-//        // todoo
-//        label.text = "***"
-//        label.font = .systemFont(ofSize: 12)
-//        return label
-//    }()
-    
     
     var onNetworkButtonTapped: (() -> Void)?
 
@@ -64,13 +51,11 @@ class AssetHeaderTableViewCell: UITableViewCell {
     
     private func setupUI() {
         contentView.addSubview(networkButton)
-        // todoo
         networkButton.snp.makeConstraints { make in
             make.top.centerX.equalToSuperview()
             make.height.equalTo(40)
             make.width.equalTo(120)
         }
-        // todoo
         networkButton.setTitleColor(.gray, for: .normal)
         networkButton.titleLabel?.font = .systemFont(ofSize: 12)
         networkButton.setTitle("All Mainnets", for: .normal)
@@ -161,13 +146,11 @@ class AssetHeaderTableViewCell: UITableViewCell {
         // todoo $
         if moneyButton.isSelected {
             moneyLabel.text = "$ " + formatterStringFromDouble(sum)
-            
 //            moneyIncreaseCountLabel.text = "+$10 . +20%"
         }
         moneyCount = sum
     }
     
-    // todoo 放Util
     private func formatterStringFromDouble(_ sum: Double) -> String {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 2

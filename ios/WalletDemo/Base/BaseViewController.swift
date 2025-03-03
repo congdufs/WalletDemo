@@ -21,7 +21,6 @@ class BaseViewController: UIViewController {
         button.layer.masksToBounds = true
         button.setTitle("Wallet 1 ", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 12)
-        // todoo
         button.setImage(UIImage(named: "transaction"), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.contentHorizontalAlignment = .leading
