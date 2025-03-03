@@ -13,7 +13,6 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { CurrencySelectionProps }  from './navigation';
 
-
 type Currency = {
   symbol: string;
   name: string;
@@ -41,8 +40,9 @@ interface CurrencySelectionProps {
   route: RouteProp<{ params: CurrencyParams }, 'params'>;
 }
 
+// const ReactNativeBridgeModule = NativeModules.ReactNativeBridgeModule;
+// const eventEmitter = new NativeEventEmitter(ReactNativeBridgeModule);
 const { ReactNativeBridgeModule } = NativeModules;
-const eventEmitter = new NativeEventEmitter(ReactNativeBridgeModule);
 
 function CurrencySelection({}: CurrencySelectionProps) {
   const route = useRoute(); 
@@ -52,8 +52,8 @@ function CurrencySelection({}: CurrencySelectionProps) {
 
   const notifyNative = () => {
     console.log("test000")
-    console.log(NativeModules)
-    ReactNativeBridgeModule.receiveEventFromRN({"currency": {"symbol": selectedCurrency.symbol, "name": selectedCurrency.name, "code": selectedCurrency.code}});
+    console.log(ReactNativeBridgeModule)
+    ReactNativeBridgeModule.handleEventFromRN("selectdCurrency", {"symbol": selectedCurrency.symbol, "name": selectedCurrency.name, "code": selectedCurrency.code});
   };
 
   return (

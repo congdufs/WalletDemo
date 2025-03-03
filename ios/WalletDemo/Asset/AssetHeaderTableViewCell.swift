@@ -95,34 +95,6 @@ class AssetHeaderTableViewCell: UITableViewCell {
             make.height.equalTo(30)
             make.top.equalTo(moneyStackView.snp.bottom)
         }
-//        let dotlabel = UILabel()
-//        dotlabel.textColor = .gray
-//        dotlabel.textAlignment = .center
-//        dotlabel.numberOfLines = 1
-//        dotlabel.text = "."
-//        dotlabel.font = .systemFont(ofSize: 22)
-//        let ratioStackView = UIStackView()
-//        contentView.addSubview(ratioStackView)
-//        ratioStackView.axis = .horizontal
-//        ratioStackView.alignment = .center
-//        ratioStackView.spacing = 4
-//        ratioStackView.addArrangedSubview(moneyIncreaseCountLabel)
-//        ratioStackView.addArrangedSubview(dotlabel)
-//        ratioStackView.addArrangedSubview(moneyIncreaseRatioLabel)
-//        ratioStackView.snp.makeConstraints { make in
-//            make.top.equalTo(moneyStackView.snp.bottom)
-//            make.centerX.equalToSuperview()
-//            make.height.equalTo(30)
-//        }
-//        moneyIncreaseCountLabel.snp.makeConstraints { make in
-//            make.width.height.equalTo(30)
-//        }
-//        dotlabel.snp.makeConstraints { make in
-//            make.width.height.equalTo(30)
-//        }
-//        moneyIncreaseCountLabel.snp.makeConstraints { make in
-//            make.height.equalTo(30)
-//        }
     }
 
     @objc func didTapNetworkButton() {
@@ -145,7 +117,7 @@ class AssetHeaderTableViewCell: UITableViewCell {
         networkButton.setTitle(item.currency.name, for: .normal)
         // todoo $
         if moneyButton.isSelected {
-            moneyLabel.text = "$ " + formatterStringFromDouble(sum)
+            moneyLabel.text = item.currency.symbol + formatterStringFromDouble(sum)
 //            moneyIncreaseCountLabel.text = "+$10 . +20%"
         }
         moneyCount = sum

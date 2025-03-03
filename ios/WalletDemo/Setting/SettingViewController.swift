@@ -16,6 +16,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
+        
         reactNativeFactoryDelegate = ReactNativeDelegate()
         reactNativeFactory = RCTReactNativeFactory(delegate: reactNativeFactoryDelegate!)
         view = reactNativeFactory!.rootViewFactory.view(withModuleName: "ReactNativeModule")

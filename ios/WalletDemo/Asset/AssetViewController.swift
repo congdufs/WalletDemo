@@ -17,6 +17,7 @@ class AssetViewController: BaseViewController {
         super.viewDidLoad()
         setupUI()
         updateData()
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedCurrency(notification:)), name: NSNotification.Name("selectdCurrency"), object: nil)
     }
     
     private func setupUI() {
@@ -90,10 +91,19 @@ class AssetViewController: BaseViewController {
         }
     }
     
-    @objc private func didTapSettings() {
+    @objc func didTapSettings() {
         let settingsVC = SettingViewController()
         settingsVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    // rn had selected currency
+    @objc func selectedCurrency(notification: Notification) {
+        if let info = notification.userInfo {
+            let symbol = info["symbol"] as? String ?? ""
+            let code = info["code"] as? String ?? ""
+            print(symbol+code)
+        }
     }
     
     private func updateData() {
