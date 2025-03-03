@@ -5,6 +5,5 @@ export type RootStackParamList = {
   CurrencySelection: { currentCurrency: string };
 };
 
-// 屏幕组件 Props 类型
 export type AppScreenProps = NativeStackScreenProps<RootStackParamList, 'App'>;
 export type CurrencySelectionProps = NativeStackScreenProps<RootStackParamList, 'CurrencySelection'>;

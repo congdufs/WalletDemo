@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   FlatList,
   TouchableOpacity,
+  Image,
   StyleSheet,
 } from 'react-native';
-// import { useBackButton } from '@react-navigation/native';
-// import { RouteProp } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import type { CurrencySelectionProps }  from './navigation';
 
 
@@ -39,15 +40,12 @@ interface CurrencySelectionProps {
 }
 
 function CurrencySelection({}: CurrencySelectionProps) {
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(currencies[0]);
-
+  const route = useRoute(); 
+  const { currentCurrency } = route.params || {};
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(currentCurrency || currencies[0]);
+  const navigation = useNavigation<CurrencySelectionProps['navigation']>();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Display Currency</Text>
-      <Text style={styles.subtitle}>
-        Select your preferred display currency. This will be used to show fiat values for your crypto holdings.
-      </Text>
-      
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={currencies}
         keyExtractor={(item) => item.code}
@@ -55,26 +53,36 @@ function CurrencySelection({}: CurrencySelectionProps) {
           <TouchableOpacity 
             style={[
               styles.currencyItem,
-              { backgroundColor: item.code === selectedCurrency.code ? '#f0f4ff' : '#fff' }
+              // { backgroundColor: item.code === selectedCurrency.code ? '#f0f4ff' : '#fff' }
             ]}
             onPress={() => setSelectedCurrency(item)}
           >
             <Text style={styles.currencySymbol}>{item.symbol}</Text>
             <Text style={styles.currencyName}>{item.name} ({item.code})</Text>
+            {selectedCurrency.code === item.code && (
+              <Image 
+              source={require('./assets/images/arrow.png')} 
+              style={styles.iconImage} 
+              />
+            )}
           </TouchableOpacity>
+        )}
+        ListHeaderComponent={() => (
+          <Text style={styles.description}>
+            Select your preferred display currency. Your display currency is used to provide a fiat equivalence for your crypto balances
+          </Text>
         )}
       />
       
       <TouchableOpacity 
         style={styles.confirmButton}
         onPress={() => {
-          //todoo
           navigation.navigate('App', { currency: selectedCurrency });
         }}
       >
         <Text style={styles.confirmButtonText}>Confirm</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -84,12 +92,12 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#fff',
   },
-  time: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 24,
-    alignSelf: 'center',
+  description: {
+    fontSize: 14,
+    color: '#666666',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    marginBottom: 12,
   },
   title: {
     fontSize: 24,
@@ -106,30 +114,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 16,
-    paddingHorizontal: 24,
+    marginHorizontal: 24,
     borderRadius: 8,
     marginVertical: 8,
+    backgroundColor: '#f0f4ff'
+  },
+  textContainer: {
+    flex: 1,
   },
   currencySymbol: {
     fontSize: 20,
+    fontWeight: 'bold',
     color: '#007bff',
-    marginRight: 8,
   },
   currencyName: {
+    marginLeft: 8,
     fontSize: 16,
-    fontWeight: '500',
   },
   confirmButton: {
     backgroundColor: '#007bff',
     paddingVertical: 12,
-    paddingHorizontal: 24,
+    marginHorizontal: 24,
     borderRadius: 8,
     marginTop: 32,
   },
   confirmButtonText: {
     color: '#fff',
     fontSize: 18,
+    textAlign: 'center',
     fontWeight: 'bold',
+  },
+  iconImage: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    marginLeft: 'auto', 
+    marginRight: 12,
   },
 });
 

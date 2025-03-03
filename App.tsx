@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import {
   SafeAreaView,
   FlatList,
@@ -8,8 +8,7 @@ import {
   Image,
   View,
 } from 'react-native';
-// import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect, useRoute } from '@react-navigation/native';
 import type { AppScreenProps } from './navigation';
 
 
@@ -63,6 +62,23 @@ interface AppProps {}
 
 function App({}: AppProps) {
   const navigation = useNavigation<AppScreenProps['navigation']>();
+  const route = useRoute();
+  // const [displayCurrency, setDisplayCurrency] = useState<string | null>('$USD');
+  const [displayCurrency, setDisplayCurrency] = useState<Currency | null>({
+    symbol: '$',
+    name: 'US Dollar',
+    code: 'USD',
+  });
+  
+  
+
+  useFocusEffect(() => {
+    const receivedData = route.params?.currency;
+    if (receivedData) {
+      setDisplayCurrency(receivedData);
+    }
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -91,33 +107,22 @@ function App({}: AppProps) {
                     onPress={() => {
                       switch (content.mainText) {
                         case 'Display Currency':
-                          // todoo
                           navigation.navigate('CurrencySelection', { 
-                            currentCurrency: content.subText.replace('$', '') || 'USD'
+                            currentCurrency: displayCurrency,
                           });
                           break;
                         default:
                           alert(content.mainText);
                       }
                     }}
-                    // 修改点击处理部分
-                    // const handleItemPress = (content: typeof mockData[number]['items'][number]) => {
-                    //   switch (content.mainText) {
-                    //     case 'Display Currency':
-                    //       navigation.navigate('CurrencySelection', { 
-                    //         currentCurrency: content.subText?.replace('$', '') || 'USD'
-                    //       });
-                    //       break;
-                    //     default:
-                    //       alert(content.mainText);
-                    //   }
-                    // };
-
-                    // // 在 renderItem 中使用：
-                    // onPress={() => handleItemPress(content)}
                   >
                     <Text style={styles.mainText}>{content.mainText}</Text>
-                    {content.subText ? (
+                    {/* {content.subText ? (
+                      <Text style={styles.subText}>{content.subText}</Text>
+                    ) : null} */}
+                    {content.mainText === 'Display Currency' ? (
+                      <Text style={styles.subText}>{displayCurrency.symbol+displayCurrency.code}</Text>
+                    ) : content.subText ? (
                       <Text style={styles.subText}>{content.subText}</Text>
                     ) : null}
                     <Image 
