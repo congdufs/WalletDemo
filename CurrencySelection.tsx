@@ -40,8 +40,6 @@ interface CurrencySelectionProps {
   route: RouteProp<{ params: CurrencyParams }, 'params'>;
 }
 
-// const ReactNativeBridgeModule = NativeModules.ReactNativeBridgeModule;
-// const eventEmitter = new NativeEventEmitter(ReactNativeBridgeModule);
 const { ReactNativeBridgeModule } = NativeModules;
 
 function CurrencySelection({}: CurrencySelectionProps) {
