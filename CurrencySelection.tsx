@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  NativeEventEmitter,
+  NativeModules
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { CurrencySelectionProps }  from './navigation';
@@ -39,11 +41,21 @@ interface CurrencySelectionProps {
   route: RouteProp<{ params: CurrencyParams }, 'params'>;
 }
 
+const { ReactNativeBridgeModule } = NativeModules;
+const eventEmitter = new NativeEventEmitter(ReactNativeBridgeModule);
+
 function CurrencySelection({}: CurrencySelectionProps) {
   const route = useRoute(); 
   const { currentCurrency } = route.params || {};
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>(currentCurrency || currencies[0]);
   const navigation = useNavigation<CurrencySelectionProps['navigation']>();
+
+  const notifyNative = () => {
+    console.log("test000")
+    console.log(NativeModules)
+    ReactNativeBridgeModule.receiveEventFromRN({"currency": {"symbol": selectedCurrency.symbol, "name": selectedCurrency.name, "code": selectedCurrency.code}});
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -78,6 +90,7 @@ function CurrencySelection({}: CurrencySelectionProps) {
         style={styles.confirmButton}
         onPress={() => {
           navigation.navigate('App', { currency: selectedCurrency });
+          notifyNative()
         }}
       >
         <Text style={styles.confirmButtonText}>Confirm</Text>
