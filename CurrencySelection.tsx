@@ -73,7 +73,7 @@ function CurrencySelection({}: CurrencySelectionProps) {
             <Text style={styles.currencyName}>{item.name} ({item.code})</Text>
             {selectedCurrency.code === item.code && (
               <Image 
-              source={require('./assets/images/arrow.png')} 
+              source={require('./assets/images/selected.png')} 
               style={styles.iconImage} 
               />
             )}
